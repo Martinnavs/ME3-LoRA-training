@@ -6,7 +6,8 @@ Then (on any machine with llama.cpp; the converter handles the `granitehybrid` a
 that produced the GGUF files used in the laptop experiments):
     python llama.cpp/convert_hf_to_gguf.py runs/h1b-lora-s0/merged --outfile router-f16.gguf --outtype f16
     llama.cpp/build/bin/llama-quantize router-f16.gguf router-Q4_K_M.gguf Q4_K_M
-Compare Q8_0 as well; see what quantisation costs with eval/onit_eval.py.
+Everything after the merge (GGUF, serving, scoring on the OnIt set and the pack) belongs to the voice-agent repository:
+see docs/ARCHITECTURE.md, "Handoff".
 """
 
 from __future__ import annotations

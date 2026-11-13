@@ -1,0 +1,11 @@
+{
+  "source": "https://github.com/Martinnavs/AI-231-ME3",
+  "source_commit": "1c00f6032c1ea959e40defe3b82856f8080ce533",
+  "files": {
+    "spec/tools.py": "5f268ee429f08ba09c32d59c1e6b28a557d669f0a2fc1771f386b4ad5f4e28bc",
+    "data/format.py": "a149891e4b18c88c5ba8025f29ebc894843b02c660c3a1ca0729a2d09a58a416",
+    "data/agent_tools_snapshot.json": "1793da667f6dec5d46a3c93d21c463a363aa857d18f600fec301184c09cdff67",
+    "eval/onit_eval.jsonl": "2719b86cbd998d5b64a7455032af4e0f3c163744e011ddafdcc6a02b848e9d84",
+    "eval/agent_prompts.jsonl": "d5213aee976534103dc3c975a617e42ff618d8397445d7528c5e74bd16041c23"
+  }
+}

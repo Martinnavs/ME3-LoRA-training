@@ -34,7 +34,6 @@ import banks as B  # noqa: E402
 import tools as T  # noqa: E402
 from format import build_messages  # noqa: E402
 
-ROOT = HERE.parents[1]
 Example = dict  # {"kind", "key", "phonebook", "history", "user", "target"}
 
 
@@ -1141,11 +1140,7 @@ def grams(text: str, n: int = 3) -> set[tuple[str, ...]]:
 def eval_prompts() -> list[str]:
     """Every user sentence of the two evaluation sets."""
     out = []
-    for path in (  # the project layout, then the stand-alone training repository (eval/ holds copies of both sets)
-        ROOT / "pipeline/config/eval/agent_prompts.jsonl",
-        HERE.parent / "eval/onit_eval.jsonl",
-        HERE.parent / "eval/agent_prompts.jsonl",
-    ):
+    for path in (HERE.parent / "eval/onit_eval.jsonl", HERE.parent / "eval/agent_prompts.jsonl"):
         if path.exists():
             for raw in path.read_text().splitlines():
                 if raw.strip():

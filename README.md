@@ -9,23 +9,33 @@ transparency and reproducibility: everything needed to regenerate the data, retr
 | **Model** (adapter, public) | <https://huggingface.co/martinnavs/granite-4.0-h-350m-router-kd-web4-s0> |
 | **How it was made, tested and where it is wrong** | [`MODEL-CARD.md`](MODEL-CARD.md) |
 | **Round-by-round working log** | [`docs/CLUSTER-LOG.md`](docs/CLUSTER-LOG.md) |
-| **The voice agent that uses it** | <https://github.com/Martinnavs/AI-231-ME3> (this is a copy of its `finetune/` directory) |
+| **Who owns what, and the handoff** | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
+| **The voice agent that uses it** | <https://github.com/Martinnavs/AI-231-ME3> (owns the contract, the evaluation sets, serving and acceptance) |
 | Licence | Apache 2.0 (code and data); the adapter inherits the Granite base model's terms |
+
+## Scope
+
+This repository does **data and training only**: generate the data, train the teacher and the student, run the training-side
+checks, publish the adapter. Serving the model, the GGUF conversion, the call policy and the acceptance runs belong to the
+voice-agent repository and are handed off to it (`docs/ARCHITECTURE.md`). The line language, the chat format and the
+evaluation sets are *its* files; this repository holds pinned copies (`contract.lock.json`, `scripts/sync_contract.py`) and
+the tests fail if they drift or are edited here.
 
 ## What is here
 
 ```
-spec/tools.py          the line language the router writes (NAME|arg|arg), the tool list, the GBNF grammar
+spec/tools.py          the line language the router writes (NAME|arg|arg), the tool list, the GBNF grammar  [pinned copy]
 data/banks.py          hand-written wordings and word lists (English, Tagalog/Taglish)
 data/generate.py       the data generator: seeds -> exact target lines, noise, histories, splits, leak filter
-data/format.py         the chat format (system message with the phonebook) used in training and serving
+data/format.py         the chat format (system message with the phonebook) used in training and serving  [pinned copy]
 data/released/         the data the released model was trained on (see below)
 train/train.py         LoRA training and distillation (reply-token loss, KL to the teacher + gold cross-entropy)
 train/run.sh           start/stop a run in the background on a shared GPU node (refuses GPU 6, a local rule: edit it)
 train/export.py        merge notes and the llama.cpp conversion steps
 scripts/               teacher-logit cache (top-k), merge of two seeds into the distillation set, preflight
-eval/                  held-out checks (ticket 03, ticket 04), the OnIt set and the 87-prompt pack (leak filter inputs)
-tests/                 73 tests (labels parse, splits disjoint, seeds behave, determinism, loss helpers)
+eval/                  held-out checks (ticket 03, ticket 04); the OnIt set and the 87-prompt pack (leak-filter inputs, pinned copies)
+contract.lock.json     sha256 and source commit of the pinned copies; scripts/sync_contract.py updates and checks them
+tests/                 76 tests (labels parse, splits disjoint, seeds behave, determinism, loss helpers, contract pinned)
 ```
 
 ## The data
@@ -67,9 +77,9 @@ on a shared 40 GB A100: about an hour per model. Expect the same data and the sa
 
 ## Honest limits of this repository
 
-- It is a snapshot copy; the voice-agent repository stays the place where the router is used and where new tickets land.
-  Later rounds will appear here as new commits.
-- `eval/onit_eval.py` (the Gemini and router scorer for the OnIt set) needs the voice agent's pipeline and is not copied;
-  `eval/onit_eval.jsonl` and `eval/agent_prompts.jsonl` are the two evaluation sets, kept here so the leak filter works.
+- The voice-agent repository stays the place where the router is used and where new tickets land; later rounds appear here
+  as new commits. `finetune/` in that repository still holds the same code as a mirror, so the two can differ until it is trimmed.
+- `eval/onit_eval.py` (the scorer for the OnIt set) needs the voice agent's pipeline and lives there;
+  `eval/onit_eval.jsonl` and `eval/agent_prompts.jsonl` are pinned copies of the two evaluation sets, kept for the leak filter.
 - Scores in the model card are on template data and hand-written held-out cases; the independent check was run on the
   laptop with the real stack (model card, section 7).

@@ -19,7 +19,5 @@ extend-exclude = ["runs", "data/generated"]
 select = ["E", "F", "I", "B", "UP", "SIM"]
 
 [tool.ruff.lint.per-file-ignores]
-"eval/onit_prompts.py" = ["E501"]  # regular expressions for the accepted shell commands
-"eval/onit_eval.py" = ["E501"]  # canned tool results are data strings
 "train/*.py" = ["E501"]  # usage lines in the docstrings are commands
 "scripts/*.py" = ["E501"]
