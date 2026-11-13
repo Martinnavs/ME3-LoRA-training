@@ -1,0 +1,266 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "smart_home",
+   "description": "Control or check the home: lights, colour, brightness, music, volume, thermostat, timer, alarm, reminders, phone call, message. One call per command. Intents that need a slot, and its form: BRIGHTNESS: a percentage, like '40 percent'; COLOR: any colour, like 'purple' or 'warm white'; TEMPERATURE: degrees, like '24 degrees'; TIMER: a duration, like '45 minutes' or '1 hour 30 minutes'; ALARM: a clock time, like '6:30 AM' or '7:15 PM'; CREATE_REMINDER: what to be reminded of, in the user's words; CALL: a contact name from the phonebook; MESSAGE: a contact name from the phonebook. Phonebook: Anna (sister), Ben (brother), Mom (mother), Dr. Reyes (dentist), Carlo (friend). Every other intent takes no slot.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "intent": {
+      "type": "string",
+      "enum": [
+       "PLAY_MUSIC",
+       "PAUSE",
+       "STOP",
+       "NEXT",
+       "VOLUME_UP",
+       "VOLUME_DOWN",
+       "LIGHT_ON",
+       "LIGHT_OFF",
+       "BRIGHTNESS",
+       "COLOR",
+       "TEMPERATURE",
+       "TIMER",
+       "ALARM",
+       "CALL",
+       "MESSAGE",
+       "CREATE_REMINDER",
+       "LIST_REMINDERS"
+      ]
+     },
+     "slot": {
+      "type": "string",
+      "description": "The value for BRIGHTNESS, COLOR, TEMPERATURE, TIMER, ALARM, CREATE_REMINDER, CALL or MESSAGE, in the form listed. Omit for other intents."
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "intent"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "search_docs",
+   "description": "Search the document collection about the life and works of the novelist Cormac McCarthy and return the best-matching passages with their source file. Use it for any question on that topic and answer from the passages. Write the query as a short self-contained question.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     },
+     "top_k": {
+      "default": 3,
+      "type": "integer"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_current_time",
+   "description": "Get current time in a specific timezone",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "timezone": {
+      "description": "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'Asia/Manila' as local timezone if no timezone provided by the user.",
+      "title": "Timezone",
+      "type": "string"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "timezone"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "convert_time",
+   "description": "Convert time between timezones",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "source_timezone": {
+      "description": "Source IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'Asia/Manila' as local timezone if no source timezone provided by the user.",
+      "title": "Source Timezone",
+      "type": "string"
+     },
+     "time": {
+      "description": "Time to convert in 24-hour format (HH:MM)",
+      "title": "Time",
+      "type": "string"
+     },
+     "target_timezone": {
+      "description": "Target IANA timezone name (e.g., 'Asia/Tokyo', 'America/San_Francisco'). Use 'Asia/Manila' as local timezone if no target timezone provided by the user.",
+      "title": "Target Timezone",
+      "type": "string"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "source_timezone",
+     "time",
+     "target_timezone"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "weather",
+   "description": "The weather for a place, today or tomorrow: conditions, temperature range and the chance of rain. Leave `place` empty for the user's home (Quezon City). `day` is 'today' or 'tomorrow'. Say the answer as it is.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "place": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null
+     },
+     "day": {
+      "default": "today",
+      "type": "string"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": []
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "wiki_summary",
+   "description": "A short encyclopedia summary (Wikipedia) of a person, place, book, film or thing. Use it for general-knowledge questions; write `topic` as the name of the subject.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "topic": {
+      "type": "string"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "topic"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_volume",
+   "description": "The speaker's volume on the Raspberry Pi, in percent.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": []
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "set_volume",
+   "description": "Set the speaker's volume on the Raspberry Pi, in percent (0 to 100).",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "percent": {
+      "title": "Percent",
+      "type": "integer"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "percent"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "device_status",
+   "description": "The Raspberry Pi's status: CPU temperature, uptime, load, free memory and whether the speaker is connected.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": []
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "web_answer",
+   "description": "Look up a factual question on the web and get a short answer to say: people, places, films, facts, current events, how things work. Not for Cormac McCarthy (use search_docs). One call per question; write `query` as a complete question, for example 'Who painted the Mona Lisa?'. Say the answer as it is.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     },
+     "say": {
+      "type": "string",
+      "description": "One short sentence said to the user the moment this call starts, saying what you are doing (like 'Checking the weather.'); never the result."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  }
+ }
+]

@@ -1,0 +1,9 @@
+runs/
+eval/results/
+*.gguf
+*.safetensors
+__pycache__/
+.venv*/
+data/generated/
+data/generated-s1/
+data/distill/

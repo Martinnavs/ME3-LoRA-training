@@ -1,0 +1,25 @@
+[project]
+name = "voice-router-finetune"
+version = "0.1.0"
+description = "Fine-tune a small local model to route the voice agent's simple tool calls (docs/LOCAL-LLM-FINETUNE-PLAN.md)"
+requires-python = ">=3.11"
+dependencies = []  # spec/ and eval/ need only the standard library
+
+[dependency-groups]
+# Not locked yet: resolve and pin on the cluster after `scripts/preflight.py` (torch must match its CUDA).
+data = ["google-genai>=1.0"]
+train = ["torch", "transformers>=4.56", "peft", "trl", "datasets", "accelerate"]
+dev = ["pytest", "ruff"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["runs", "data/generated"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"eval/onit_prompts.py" = ["E501"]  # regular expressions for the accepted shell commands
+"eval/onit_eval.py" = ["E501"]  # canned tool results are data strings
+"train/*.py" = ["E501"]  # usage lines in the docstrings are commands
+"scripts/*.py" = ["E501"]

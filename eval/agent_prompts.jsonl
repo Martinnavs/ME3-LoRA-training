@@ -1,0 +1,87 @@
+{"id": "c01", "kind": "canonical", "turns": ["Turn on the lights."], "expect": [[{"intent": "LIGHT_ON", "slot": null}]]}
+{"id": "c02", "kind": "canonical", "turns": ["Kill the lights."], "expect": [[{"intent": "LIGHT_OFF", "slot": null}]]}
+{"id": "c03", "kind": "canonical", "turns": ["Play some music."], "expect": [[{"intent": "PLAY_MUSIC", "slot": null}]]}
+{"id": "c04", "kind": "canonical", "turns": ["Pause the song."], "expect": [[{"intent": "PAUSE", "slot": null}]]}
+{"id": "c05", "kind": "canonical", "turns": ["Stop playing."], "expect": [[{"intent": "STOP", "slot": null}]]}
+{"id": "c06", "kind": "canonical", "turns": ["Skip this song."], "expect": [[{"intent": "NEXT", "slot": null}]]}
+{"id": "c07", "kind": "canonical", "turns": ["Turn the volume up."], "expect": [[{"intent": "VOLUME_UP", "slot": null}]]}
+{"id": "c08", "kind": "canonical", "turns": ["Lower the volume."], "expect": [[{"intent": "VOLUME_DOWN", "slot": null}]]}
+{"id": "c09", "kind": "canonical", "turns": ["Set the temperature to 22 degrees."], "expect": [[{"intent": "TEMPERATURE", "slot": "22 degrees"}]]}
+{"id": "c10", "kind": "canonical", "turns": ["Adjust brightness to 60 percent."], "expect": [[{"intent": "BRIGHTNESS", "slot": "60 percent"}]]}
+{"id": "c11", "kind": "canonical", "turns": ["Change the color to blue."], "expect": [[{"intent": "COLOR", "slot": "blue"}]]}
+{"id": "c12", "kind": "canonical", "turns": ["What's the weather?"], "expect": [[{"tool": "weather"}]]}
+{"id": "c13", "kind": "canonical", "turns": ["What time is it?"], "expect": [[{"tool": "get_current_time"}]]}
+{"id": "c14", "kind": "canonical", "turns": ["Start a timer for 30 seconds."], "expect": [[{"intent": "TIMER", "slot": "30 seconds"}]]}
+{"id": "c15", "kind": "canonical", "turns": ["Set an alarm for 6 AM."], "expect": [[{"intent": "ALARM", "slot": "6:00 AM"}]]}
+{"id": "c16", "kind": "phonebook", "turns": ["Make a phone call."], "expect": [[]]}
+{"id": "c17", "kind": "phonebook", "turns": ["Send a message."], "expect": [[]]}
+{"id": "c18", "kind": "canonical", "turns": ["Remind me to drink water."], "expect": [[{"intent": "CREATE_REMINDER", "slot": "drink water"}]]}
+{"id": "c19", "kind": "canonical", "turns": ["List my reminders."], "expect": [[{"intent": "LIST_REMINDERS", "slot": null}]]}
+{"id": "p01", "kind": "paraphrase", "turns": ["Could you switch the lights on for me?"], "expect": [[{"intent": "LIGHT_ON", "slot": null}]]}
+{"id": "p02", "kind": "paraphrase", "turns": ["I'm heading to bed, lights off please."], "expect": [[{"intent": "LIGHT_OFF", "slot": null}]]}
+{"id": "p03", "kind": "paraphrase", "turns": ["Put on some tunes."], "expect": [[{"intent": "PLAY_MUSIC", "slot": null}]]}
+{"id": "p04", "kind": "paraphrase", "turns": ["It's too loud, bring it down a bit."], "expect": [[{"intent": "VOLUME_DOWN", "slot": null}]]}
+{"id": "p05", "kind": "paraphrase", "turns": ["Do I need an umbrella today?"], "expect": [[{"tool": "weather"}]]}
+{"id": "p06", "kind": "paraphrase", "turns": ["Got the time?"], "expect": [[{"tool": "get_current_time"}]]}
+{"id": "p07", "kind": "paraphrase", "turns": ["What's on my to-do list?"], "expect": [[{"intent": "LIST_REMINDERS", "slot": null}]]}
+{"id": "s01", "kind": "slot-normalize", "turns": ["Wake me up at six in the morning."], "expect": [[{"intent": "ALARM", "slot": "6:00 AM"}]]}
+{"id": "s02", "kind": "slot-normalize", "turns": ["Countdown for one minute."], "expect": [[{"intent": "TIMER", "slot": "1 minute"}]]}
+{"id": "s03", "kind": "slot-normalize", "turns": ["Make it twenty six degrees in here."], "expect": [[{"intent": "TEMPERATURE", "slot": "26 degrees"}]]}
+{"id": "s04", "kind": "slot-normalize", "turns": ["Lights at full brightness."], "expect": [[{"intent": "BRIGHTNESS", "slot": "100 percent"}]]}
+{"id": "s05", "kind": "slot-normalize", "turns": ["Set an alarm for nine tonight."], "expect": [[{"intent": "ALARM", "slot": "9:00 PM"}]]}
+{"id": "s06", "kind": "slot-normalize", "turns": ["Ten second timer, please."], "expect": [[{"intent": "TIMER", "slot": "10 seconds"}]]}
+{"id": "s07", "kind": "slot-normalize", "turns": ["Remind me to go study."], "expect": [[{"intent": "CREATE_REMINDER", "slot": "study"}]]}
+{"id": "o01", "kind": "free-value", "turns": ["Set the temperature to 30 degrees."], "expect": [[{"intent": "TEMPERATURE", "slot": "30 degrees"}]]}
+{"id": "o02", "kind": "free-value", "turns": ["Change the lights to purple."], "expect": [[{"intent": "COLOR", "slot": "purple"}]]}
+{"id": "o03", "kind": "free-value", "turns": ["Set a timer for five minutes."], "expect": [[{"intent": "TIMER", "slot": "5 minutes"}]]}
+{"id": "a01", "kind": "ambiguous", "turns": ["I'm cold."], "expect": [[]]}
+{"id": "a02", "kind": "ambiguous", "turns": ["Set an alarm."], "expect": [[]]}
+{"id": "n01", "kind": "negative", "turns": ["Hi, how are you today?"], "expect": [[]]}
+{"id": "n02", "kind": "negative", "turns": ["Tell me a fun fact about owls."], "expect": [[]]}
+{"id": "n03", "kind": "docs", "turns": ["Which tools does baby-onit ship?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "n04", "kind": "negative", "turns": ["Thanks, that's all."], "expect": [[]]}
+{"id": "m01", "kind": "multi-intent", "turns": ["Turn off the lights and play some music."], "expect": [[{"intent": "LIGHT_OFF", "slot": null}, {"intent": "PLAY_MUSIC", "slot": null}]]}
+{"id": "m02", "kind": "multi-intent", "turns": ["Set the temperature to 18 degrees and start a 10 second timer."], "expect": [[{"intent": "TEMPERATURE", "slot": "18 degrees"}, {"intent": "TIMER", "slot": "10 seconds"}]]}
+{"id": "t01", "kind": "multi-turn", "turns": ["Turn on the lights.", "Now make them red."], "expect": [[{"intent": "LIGHT_ON", "slot": null}], [{"intent": "COLOR", "slot": "red"}]]}
+{"id": "t02", "kind": "multi-turn", "turns": ["Play some music.", "Actually, stop it."], "expect": [[{"intent": "PLAY_MUSIC", "slot": null}], [{"intent": "STOP", "slot": null}]]}
+{"id": "t03", "kind": "multi-turn", "turns": ["Set an alarm.", "Eight in the morning."], "expect": [[], [{"intent": "ALARM", "slot": "8:00 AM"}]]}
+{"id": "d01", "kind": "docs", "turns": ["What is baby-onit?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d02", "kind": "docs", "turns": ["Where do baby-onit's API keys live?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d03", "kind": "docs", "turns": ["How is baby-onit different from onit?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d04", "kind": "docs", "turns": ["What does the baby-onit agent loop do?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d05", "kind": "docs", "turns": ["What is the NEVER_ASK_COMMANDS list in baby-onit?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d06", "kind": "docs", "turns": ["How does baby-onit remember earlier turns in a session?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d07", "kind": "docs", "turns": ["What does baby-onit's doctor command check?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "d08", "kind": "docs", "turns": ["What does the baby-onit setup wizard do?"], "expect": [[{"tool": "search_docs"}]]}
+{"id": "f01", "kind": "free-value", "turns": ["Set a timer for 45 minutes."], "expect": [[{"intent": "TIMER", "slot": "45 minutes"}]]}
+{"id": "f02", "kind": "free-value", "turns": ["Wake me up at six thirty tomorrow morning."], "expect": [[{"intent": "ALARM", "slot": "6:30 AM"}]]}
+{"id": "f03", "kind": "free-value", "turns": ["Dim the lights to 35 percent."], "expect": [[{"intent": "BRIGHTNESS", "slot": "35 percent"}]]}
+{"id": "f04", "kind": "free-value", "turns": ["Make the lights warm white."], "expect": [[{"intent": "COLOR", "slot": "warm white"}]]}
+{"id": "f05", "kind": "free-value", "turns": ["Set the thermostat to nineteen degrees."], "expect": [[{"intent": "TEMPERATURE", "slot": "19 degrees"}]]}
+{"id": "f06", "kind": "free-value", "turns": ["Remind me to pick up the laundry."], "expect": [[{"intent": "CREATE_REMINDER", "slot": "pick up the laundry"}]]}
+{"id": "b01", "kind": "phonebook", "turns": ["Call my sister."], "expect": [[{"intent": "CALL", "slot": "Anna"}]]}
+{"id": "b02", "kind": "phonebook", "turns": ["Text Ben."], "expect": [[{"intent": "MESSAGE", "slot": "Ben"}]]}
+{"id": "b03", "kind": "phonebook", "turns": ["Send a message to my dentist."], "expect": [[{"intent": "MESSAGE", "slot": "Dr. Reyes"}]]}
+{"id": "b04", "kind": "phonebook", "turns": ["Call Mom."], "expect": [[{"intent": "CALL", "slot": "Mom"}]]}
+{"id": "b05", "kind": "phonebook", "turns": ["Call Gary."], "expect": [[]]}
+{"id": "b06", "kind": "phonebook", "turns": ["Message my boss."], "expect": [[]]}
+{"id": "x01", "kind": "mixed", "turns": ["Turn off the lights and tell me what The Road is about."], "expect": [[{"intent": "LIGHT_OFF", "slot": null}, {"tool": "search_docs"}]]}
+{"id": "x02", "kind": "mixed", "turns": ["Play some music and tell me who Suttree is."], "expect": [[{"intent": "PLAY_MUSIC", "slot": null}, {"tool": "search_docs"}]]}
+{"id": "x03", "kind": "mixed", "turns": ["When did Blood Meridian come out? Also set a timer for 20 minutes."], "expect": [[{"tool": "search_docs"}, {"intent": "TIMER", "slot": "20 minutes"}]]}
+{"id": "t04", "kind": "multi-turn", "turns": ["Tell me about Suttree.", "And when did Blood Meridian come out?"], "expect": [[{"tool": "search_docs"}], [{"tool": "search_docs"}]]}
+{"id": "t05", "kind": "multi-turn", "turns": ["Call Anna.", "Actually, text her instead."], "expect": [[{"intent": "CALL", "slot": "Anna"}], [{"intent": "MESSAGE", "slot": "Anna"}]]}
+{"id": "t01", "kind": "time", "turns": ["What time is it in London?"], "expect": [[{"tool": "get_current_time"}]]}
+{"id": "t02", "kind": "time", "turns": ["What's today's date?"], "expect": [[{"tool": "get_current_time"}]]}
+{"id": "t03", "kind": "time", "turns": ["If it's 3 PM here, what time is it in New York?"], "expect": [[{"tool": "convert_time"}]]}
+{"id": "w01", "kind": "weather", "turns": ["Will it rain tomorrow?"], "expect": [[{"tool": "weather"}]]}
+{"id": "w02", "kind": "weather", "turns": ["What's the weather like in Baguio?"], "expect": [[{"tool": "weather"}]]}
+{"id": "w03", "kind": "weather", "turns": ["How hot will it get today?"], "expect": [[{"tool": "weather"}]]}
+{"id": "k01", "kind": "knowledge", "turns": ["Who is Lionel Messi?"], "expect": [[{"tool": "wiki_summary"}]]}
+{"id": "k02", "kind": "knowledge", "turns": ["Tell me about the Eiffel Tower."], "expect": [[{"tool": "wiki_summary"}]]}
+{"id": "k03", "kind": "knowledge", "turns": ["What is a Raspberry Pi?"], "expect": [[{"tool": "wiki_summary"}]]}
+{"id": "v01", "kind": "device", "turns": ["Set the speaker volume to 40 percent."], "expect": [[{"tool": "set_volume"}]]}
+{"id": "v02", "kind": "device", "turns": ["How loud is the speaker right now?"], "expect": [[{"tool": "get_volume"}]]}
+{"id": "v03", "kind": "device", "turns": ["Put the speaker at 20 percent."], "expect": [[{"tool": "set_volume"}]]}
+{"id": "s01", "kind": "device", "turns": ["How hot is the Pi running?"], "expect": [[{"tool": "device_status"}]]}
+{"id": "s02", "kind": "device", "turns": ["Is the speaker connected?"], "expect": [[{"tool": "device_status"}]]}
+{"id": "m01", "kind": "mixed", "turns": ["Turn on the lights and tell me the weather."], "expect": [[{"intent": "LIGHT_ON", "slot": null}, {"tool": "weather"}]]}
